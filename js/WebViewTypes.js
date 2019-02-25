@@ -476,6 +476,12 @@ export type WebViewSharedProps = $ReadOnly<{|
    */
   mediaPlaybackRequiresUserAction?: ?boolean,
 
+  //Web3View
+  web3AccountAddress?: ?string,
+  web3RpcUrl?: ?string,
+  web3ChainId?: ?int,
+  //Web3View
+
   /**
    * List of origin strings to allow being navigated to. The strings allow
    * wildcards and get matched against *just* the origin (not the full URL).

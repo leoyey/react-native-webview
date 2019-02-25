@@ -227,6 +227,9 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     protected @Nullable String injectedJS;
     protected boolean messagingEnabled = false;
     protected @Nullable RNCWebViewClient mRNCWebViewClient;
+    //Web3View
+    protected Web3JsInjectorClient web3JsInjectorClient;
+    //Web3View
     protected boolean sendContentSizeChangeEvents = false;
     public void setSendContentSizeChangeEvents(boolean sendContentSizeChangeEvents) {
       this.sendContentSizeChangeEvents = sendContentSizeChangeEvents;
@@ -320,8 +323,15 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
       if (enabled) {
         addJavascriptInterface(createRNCWebViewBridge(this), JAVASCRIPT_INTERFACE);
+        //Web3View
+        Web3JSInterface web3JSInterface = new Web3JSInterface(this);
+        addJavascriptInterface(web3JSInterface, "tko");
+        //Web3View
       } else {
         removeJavascriptInterface(JAVASCRIPT_INTERFACE);
+        //Web3View
+        removeJavascriptInterface("tko");
+        //Web3View
       }
     }
 
@@ -353,8 +363,48 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
     protected void cleanupCallbacksAndDestroy() {
       setWebViewClient(null);
+      //Web3View
+      cleanWeb3View();
+      //Web3View
       destroy();
     }
+
+    //Web3View
+    public void setWeb3AccountAddress(String web3AccountAddress) {
+      if (web3AccountAddress == null || web3AccountAddress.trim().length() == 0) {
+        return;
+      }
+      if (web3JsInjectorClient == null && mRNCWebViewClient != null) {
+        Web3JsInjectorClient web3JsInjectorClient = new Web3JsInjectorClient(this.getContext());
+        Web3WebViewClient web3WebViewClient = new Web3WebViewClient(web3JsInjectorClient);
+        Web3WrapWebViewClient web3WrapWebViewClient = new Web3WrapWebViewClient(web3WebViewClient, mRNCWebViewClient);
+        super.setWebViewClient(web3WrapWebViewClient);
+        this.web3JsInjectorClient = web3JsInjectorClient;
+        Web3JSInterface web3JSInterface = new Web3JSInterface(this);
+        addJavascriptInterface(web3JSInterface, "tko");
+      }
+      if (web3JsInjectorClient != null) {
+        web3JsInjectorClient.setWalletAddress(web3AccountAddress);
+      }
+    }
+
+    public void setWeb3RpcUrl(String web3RpcUrl) {
+      if (web3JsInjectorClient != null) {
+        web3JsInjectorClient.setRpcUrl(web3RpcUrl);
+      }
+    }
+
+    public void setWeb3ChainId(int web3ChainId) {
+      if (web3JsInjectorClient != null) {
+        web3JsInjectorClient.setChainId(web3ChainId);
+      }
+    }
+
+    public void cleanWeb3View() {
+      web3JsInjectorClient = null;
+      removeJavascriptInterface("tko");
+    }
+    //Web3View
   }
 
   public RNCWebViewManager() {
@@ -512,7 +562,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
   public void setShowsVerticalScrollIndicator(WebView view, boolean enabled) {
     view.setVerticalScrollBarEnabled(enabled);
   }
-  
+
   @ReactProp(name = "cacheEnabled")
   public void setCacheEnabled(WebView view, boolean enabled) {
     if (enabled) {
@@ -602,6 +652,21 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
   @ReactProp(name = "messagingEnabled")
   public void setMessagingEnabled(WebView view, boolean enabled) {
     ((RNCWebView) view).setMessagingEnabled(enabled);
+  }
+
+  @ReactProp(name = "web3AccountAddress")
+  public void setWeb3AccountAddress(WebView view, String web3AccountAddress) {
+    ((RNCWebView) view).setWeb3AccountAddress(web3AccountAddress);
+  }
+
+  @ReactProp(name = "web3RpcUrl")
+  public void setWeb3RpcUrl(WebView view, String web3RpcUrl) {
+    ((RNCWebView) view).setWeb3RpcUrl(web3RpcUrl);
+  }
+
+  @ReactProp(name = "web3ChainId")
+  public void setWeb3ChainId(WebView view, int web3ChainId) {
+    ((RNCWebView) view).setWeb3ChainId(web3ChainId);
   }
 
   @ReactProp(name = "source")

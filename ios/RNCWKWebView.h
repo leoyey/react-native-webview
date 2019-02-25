@@ -45,6 +45,12 @@
 @property (nonatomic, assign) BOOL allowsLinkPreview;
 @property (nonatomic, assign) BOOL showsHorizontalScrollIndicator;
 @property (nonatomic, assign) BOOL showsVerticalScrollIndicator;
+//Web3View
+@property (nonatomic, copy) NSString *web3AccountAddress;
+@property (nonatomic, copy) NSString *web3RpcUrl;
+@property (nonatomic, assign) NSInteger web3ChainId;
+//- (void)web3Notify:(NSInteger)callbackId message:(NSString *)message error:(NSString *)error;
+//Web3View
 
 + (void)setClientAuthenticationCredential:(nullable NSURLCredential*)credential;
 - (void)postMessage:(NSString *)message;

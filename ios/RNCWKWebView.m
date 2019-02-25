@@ -126,6 +126,20 @@ static NSURLCredential* clientAuthenticationCredential;
     wkWebViewConfig.mediaPlaybackRequiresUserAction = _mediaPlaybackRequiresUserAction;
 #endif
 
+      //Web3View
+      if (self.web3AccountAddress != NULL && self.web3RpcUrl != NULL) {
+          NSString *jsTko = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tko-min" ofType:@"js"] encoding:NSUTF8StringEncoding error:NULL];
+          NSString *jsInit = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tko-init" ofType:@"js"] encoding:NSUTF8StringEncoding error:NULL];
+          NSString *js = [jsTko stringByAppendingString:[NSString stringWithFormat:jsInit, self.web3AccountAddress, self.web3RpcUrl, self.web3ChainId]];
+          WKUserScript *userScript = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+          [wkWebViewConfig.userContentController addUserScript:userScript];
+          [wkWebViewConfig.userContentController addScriptMessageHandler:self name:@"signTransaction"];
+          [wkWebViewConfig.userContentController addScriptMessageHandler:self name:@"signPersonalMessage"];
+          [wkWebViewConfig.userContentController addScriptMessageHandler:self name:@"signMessage"];
+          [wkWebViewConfig.userContentController addScriptMessageHandler:self name:@"signTypedMessage"];
+      }
+      //Web3View
+
     _webView = [[WKWebView alloc] initWithFrame:self.bounds configuration: wkWebViewConfig];
     _webView.scrollView.delegate = self;
     _webView.UIDelegate = self;
@@ -165,6 +179,16 @@ static NSURLCredential* clientAuthenticationCredential;
 {
     if (_webView) {
         [_webView.configuration.userContentController removeScriptMessageHandlerForName:MessageHandlerName];
+
+      //Web3View
+      if (self.web3AccountAddress != NULL && self.web3RpcUrl != NULL) {
+          [_webView.configuration.userContentController removeScriptMessageHandlerForName:@"signTransaction"];
+          [_webView.configuration.userContentController removeScriptMessageHandlerForName:@"signPersonalMessage"];
+          [_webView.configuration.userContentController removeScriptMessageHandlerForName:@"signMessage"];
+          [_webView.configuration.userContentController removeScriptMessageHandlerForName:@"signTypedMessage"];
+      }
+      //Web3View
+
         [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
         [_webView removeFromSuperview];
         _webView.scrollView.delegate = nil;

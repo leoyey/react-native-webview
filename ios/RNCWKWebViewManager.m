@@ -51,6 +51,23 @@ RCT_EXPORT_VIEW_PROPERTY(userAgent, NSString)
 RCT_EXPORT_VIEW_PROPERTY(cacheEnabled, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowsLinkPreview, BOOL)
 
+//Web3View
+RCT_EXPORT_VIEW_PROPERTY(web3AccountAddress, NSString)
+RCT_EXPORT_VIEW_PROPERTY(web3RpcUrl, NSString)
+RCT_EXPORT_VIEW_PROPERTY(web3ChainId, NSInteger)
+//RCT_EXPORT_METHOD(web3Notify:(nonnull NSNumber *)reactTag callbackId:(NSInteger)callbackId message:(NSString *)message error:(NSString *)error)
+//{
+//    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, RNCWKWebView *> *viewRegistry) {
+//        RNCWKWebView *view = viewRegistry[reactTag];
+//        if (![view isKindOfClass:[RNCWKWebView class]]) {
+//            RCTLogError(@"Invalid view returned from registry, expecting RNCWKWebView, got: %@", view);
+//        } else {
+//            [view web3Notify:callbackId message:message error:error];
+//        }
+//    }];
+//}
+//Web3View
+
 /**
  * Expose methods to enable messaging the webview.
  */

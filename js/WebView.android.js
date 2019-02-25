@@ -176,6 +176,11 @@ class WebView extends React.Component<WebViewSharedProps, State> {
         mediaPlaybackRequiresUserAction={
           this.props.mediaPlaybackRequiresUserAction
         }
+
+        web3AccountAddress={this.props.web3AccountAddress}
+        web3RpcUrl={this.props.web3RpcUrl}
+        web3ChainId={this.props.web3ChainId}
+
         allowUniversalAccessFromFileURLs={
           this.props.allowUniversalAccessFromFileURLs
         }
