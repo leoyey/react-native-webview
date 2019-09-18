@@ -144,6 +144,14 @@ static NSURLCredential* clientAuthenticationCredential;
       WKUserScript *script = [[WKUserScript alloc] initWithSource:source injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
       [wkWebViewConfig.userContentController addUserScript:script];
     }
+    
+    if (_injectedJavaScript) {
+        WKUserScript *initialScript =
+        [[WKUserScript alloc] initWithSource:_injectedJavaScript
+                               injectionTime:WKUserScriptInjectionTimeAtDocumentStart
+                              forMainFrameOnly: YES];
+        [wkWebViewConfig.userContentController addUserScript:initialScript];
+    }
 
     wkWebViewConfig.allowsInlineMediaPlayback = _allowsInlineMediaPlayback;
 #if WEBKIT_IOS_10_APIS_AVAILABLE
@@ -862,20 +870,7 @@ static NSURLCredential* clientAuthenticationCredential;
 - (void)      webView:(WKWebView *)webView
   didFinishNavigation:(WKNavigation *)navigation
 {
-  if (_injectedJavaScript) {
-    [self evaluateJS: _injectedJavaScript thenCall: ^(NSString *jsEvaluationValue) {
-      NSMutableDictionary *event = [self baseEvent];
-      event[@"jsEvaluationValue"] = jsEvaluationValue;
-
-      if (self.onLoadingFinish) {
-        self.onLoadingFinish(event);
-      }
-    }];
-  } else if (_onLoadingFinish) {
-    _onLoadingFinish([self baseEvent]);
-  }
-
-  [self setBackgroundColor: _savedBackgroundColor];
+    [self setBackgroundColor: _savedBackgroundColor];
 }
 
 - (void)injectJavaScript:(NSString *)script
