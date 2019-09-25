@@ -871,6 +871,9 @@ static NSURLCredential* clientAuthenticationCredential;
   didFinishNavigation:(WKNavigation *)navigation
 {
     [self setBackgroundColor: _savedBackgroundColor];
+    if (_onLoadingFinish) {
+        _onLoadingFinish([self baseEvent]);
+    }
 }
 
 - (void)injectJavaScript:(NSString *)script
