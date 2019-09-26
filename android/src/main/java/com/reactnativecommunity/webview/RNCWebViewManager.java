@@ -934,6 +934,11 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     @Override
     public void onProgressChanged(WebView webView, int newProgress) {
       super.onProgressChanged(webView, newProgress);
+
+      if(newProgress >= 10){
+        ((RNCWebView) webView).setMessagingEnabled(true);
+      }
+
       WritableMap event = Arguments.createMap();
       event.putDouble("target", webView.getId());
       event.putString("title", webView.getTitle());
@@ -945,6 +950,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
         new TopLoadingProgressEvent(
           webView.getId(),
           event));
+
     }
 
     @Override
