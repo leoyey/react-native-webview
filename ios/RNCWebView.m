@@ -230,6 +230,8 @@ static NSURLCredential* clientAuthenticationCredential;
     }
 
     _webView = [[WKWebView alloc] initWithFrame:self.bounds configuration: wkWebViewConfig];
+    _webView.opaque = NO;
+    _webView.backgroundColor = [UIColor clearColor];
     _webView.scrollView.delegate = self;
     _webView.UIDelegate = self;
     _webView.navigationDelegate = self;
@@ -343,8 +345,6 @@ static NSURLCredential* clientAuthenticationCredential;
     return;
   }
 
-  CGFloat alpha = CGColorGetAlpha(backgroundColor.CGColor);
-  self.opaque = _webView.opaque = (alpha == 1.0);
   _webView.scrollView.backgroundColor = backgroundColor;
   _webView.backgroundColor = backgroundColor;
 }
