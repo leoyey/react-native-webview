@@ -141,7 +141,7 @@ static NSURLCredential* clientAuthenticationCredential;
          "};", MessageHandlerName, MessageHandlerName
       ];
 
-      WKUserScript *script = [[WKUserScript alloc] initWithSource:source injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
+      WKUserScript *script = [[WKUserScript alloc] initWithSource:source injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
       [wkWebViewConfig.userContentController addUserScript:script];
     }
     
@@ -149,7 +149,7 @@ static NSURLCredential* clientAuthenticationCredential;
         WKUserScript *initialScript =
         [[WKUserScript alloc] initWithSource:_injectedJavaScript
                                injectionTime:WKUserScriptInjectionTimeAtDocumentStart
-                              forMainFrameOnly: YES];
+                              forMainFrameOnly: NO];
         [wkWebViewConfig.userContentController addUserScript:initialScript];
     }
 
@@ -224,7 +224,7 @@ static NSURLCredential* clientAuthenticationCredential;
 
         WKUserScript* cookieInScript = [[WKUserScript alloc] initWithSource:script
                                                               injectionTime:WKUserScriptInjectionTimeAtDocumentStart
-                                                           forMainFrameOnly:YES];
+                                                           forMainFrameOnly:NO];
         [wkWebViewConfig.userContentController addUserScript:cookieInScript];
       }
     }
