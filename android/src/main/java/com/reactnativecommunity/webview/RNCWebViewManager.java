@@ -98,8 +98,6 @@ import okhttp3.Response;
 import okhttp3.OkHttpClient.Builder;
 import okhttp3.internal.http.HttpMethod;
 
-import static okhttp3.internal.Util.UTF_8;
-
 /**
  * Manages instances of {@link WebView}
  * <p>
@@ -126,7 +124,7 @@ import static okhttp3.internal.Util.UTF_8;
  */
 @ReactModule(name = RNCWebViewManager.REACT_CLASS)
 public class RNCWebViewManager extends SimpleViewManager<WebView> {
-
+  public static final Charset UTF_8 = Charset.forName("UTF-8");
   public static final int COMMAND_GO_BACK = 1;
   public static final int COMMAND_GO_FORWARD = 2;
   public static final int COMMAND_RELOAD = 3;
