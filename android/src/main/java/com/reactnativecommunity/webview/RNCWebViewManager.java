@@ -39,6 +39,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.net.http.SslError;
+import android.webkit.SslErrorHandler;
 
 import com.facebook.react.views.scroll.ScrollEvent;
 import com.facebook.react.views.scroll.ScrollEventType;
@@ -855,6 +857,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     public void onPageStarted(WebView webView, String url, Bitmap favicon) {
       super.onPageStarted(webView, url, favicon);
       mLastLoadFailed = false;
+	  System.out.println("------ERROR");
 
       dispatchEvent(
         webView,
@@ -887,6 +890,51 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
         }
       }
       return this.shouldOverrideUrlLoading(view, url);
+	}
+	
+
+	@Override
+    public void onReceivedSslError(final WebView webView, final SslErrorHandler handler, final SslError error) {
+        handler.cancel();
+
+        int code = -1202;
+        String failingUrl = error.getUrl();
+        String description = "";
+
+        // https://developer.android.com/reference/android/net/http/SslError.html
+        switch (code) {
+          case SslError.SSL_DATE_INVALID:
+            description = "The date of the certificate is invalid";
+            break;
+          case SslError.SSL_EXPIRED:
+            description = "The certificate has expired";
+            break;
+          case SslError.SSL_IDMISMATCH:
+            description = "Hostname mismatch";
+            break;
+          case SslError.SSL_INVALID:
+            description = "A generic error occurred";
+            break;
+          case SslError.SSL_MAX_ERROR:
+            description = "The number of different SSL errors.";
+            break;
+          case SslError.SSL_NOTYETVALID:
+            description = "The certificate is not yet valid";
+            break;
+          case SslError.SSL_UNTRUSTED:
+            description = "The certificate authority is not trusted";
+            break;
+          default: 
+            description = "Unknown SSL Error";
+            break;
+        }
+
+        this.onReceivedError(
+          webView,
+          code,
+          description,
+          failingUrl
+        );
     }
 
     @Override
@@ -895,7 +943,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
       int errorCode,
       String description,
       String failingUrl) {
-      super.onReceivedError(webView, errorCode, description, failingUrl);
+	  super.onReceivedError(webView, errorCode, description, failingUrl);
       mLastLoadFailed = true;
 
       // In case of an error JS side expect to get a finish event first, and then get an error event
