@@ -857,7 +857,6 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     public void onPageStarted(WebView webView, String url, Bitmap favicon) {
       super.onPageStarted(webView, url, favicon);
       mLastLoadFailed = false;
-	  System.out.println("------ERROR");
 
       dispatchEvent(
         webView,
