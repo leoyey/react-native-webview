@@ -7,7 +7,7 @@
 
 #import <WebKit/WebKit.h>
 
-@interface RNCWKProcessPoolManager : NSObject
+@interface RNCWKForkedProcessPoolManager : NSObject
 
 + (instancetype) sharedManager;
 - (WKProcessPool *)sharedProcessPool;
