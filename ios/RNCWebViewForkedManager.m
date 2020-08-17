@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import "RNCWebViewManager.h"
+#import "RNCWebViewForkedManager.h"
 
 #import <React/RCTUIManager.h>
 #import <React/RCTDefines.h>
 #import "RNCWebViewForked.h"
 
-@interface RNCWebViewManager () <RNCWebViewDelegate>
+@interface RNCWebViewForkedManager () <RNCWebViewDelegate>
 @end
 
 @implementation RCTConvert (UIScrollView)
@@ -27,7 +27,7 @@ RCT_ENUM_CONVERTER(UIScrollViewContentInsetAdjustmentBehavior, (@{
 
 @end
 
-@implementation RNCWebViewManager
+@implementation RNCWebViewForkedManager
 {
   NSConditionLock *_shouldStartLoadLock;
   BOOL _shouldStartLoad;
