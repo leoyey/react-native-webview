@@ -136,7 +136,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
   public static final int COMMAND_LOAD_URL = 7;
   public static final int COMMAND_FOCUS = 8;
   protected static final long BYTES_IN_MEGABYTE = 1000000;
-  protected static final String REACT_CLASS = "RNCWebView";
+  protected static final String REACT_CLASS = "RNCWebViewForked";
   protected final static String HEADER_CONTENT_TYPE = "content-type";
   protected static final String MIME_TEXT_HTML = "text/html";
   protected static final String MIME_UNKNOWN = "application/octet-stream";
@@ -263,7 +263,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
   }
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-  public WebResourceResponse shouldInterceptRequest(WebResourceRequest request, Boolean onlyMainFrame, RNCWebView webView) {
+  public WebResourceResponse shouldInterceptRequest(WebResourceRequest request, Boolean onlyMainFrame, RNCWebViewForked webView) {
     Uri url = request.getUrl();
     String urlStr = url.toString();
 
@@ -319,14 +319,14 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
   }
 
 
-  protected RNCWebView createRNCWebViewInstance(ThemedReactContext reactContext) {
-    return new RNCWebView(reactContext);
+  protected RNCWebViewForked createRNCWebViewInstance(ThemedReactContext reactContext) {
+    return new RNCWebViewForked(reactContext);
   }
 
   @Override
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
   protected WebView createViewInstance(ThemedReactContext reactContext) {
-    RNCWebView webView = createRNCWebViewInstance(reactContext);
+    RNCWebViewForked webView = createRNCWebViewInstance(reactContext);
     setupWebChromeClient(reactContext, webView);
     reactContext.addLifecycleEventListener(webView);
     mWebViewConfig.configWebView(webView);
@@ -541,12 +541,12 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
   @ReactProp(name = "injectedJavaScript")
   public void setInjectedJavaScript(WebView view, @Nullable String injectedJavaScript) {
-    ((RNCWebView) view).setInjectedJavaScript(injectedJavaScript);
+    ((RNCWebViewForked) view).setInjectedJavaScript(injectedJavaScript);
   }
 
   @ReactProp(name = "messagingEnabled")
   public void setMessagingEnabled(WebView view, boolean enabled) {
-    ((RNCWebView) view).setMessagingEnabled(enabled);
+    ((RNCWebViewForked) view).setMessagingEnabled(enabled);
   }
 
   @ReactProp(name = "incognito")
@@ -628,7 +628,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
   @ReactProp(name = "onContentSizeChange")
   public void setOnContentSizeChange(WebView view, boolean sendContentSizeChangeEvents) {
-    ((RNCWebView) view).setSendContentSizeChangeEvents(sendContentSizeChangeEvents);
+    ((RNCWebViewForked) view).setSendContentSizeChangeEvents(sendContentSizeChangeEvents);
   }
 
   @ReactProp(name = "mixedContentMode")
@@ -648,7 +648,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
   public void setUrlPrefixesForDefaultIntent(
     WebView view,
     @Nullable ReadableArray urlPrefixesForDefaultIntent) {
-    RNCWebViewClient client = ((RNCWebView) view).getRNCWebViewClient();
+    RNCWebViewClient client = ((RNCWebViewForked) view).getRNCWebViewClient();
     if (client != null && urlPrefixesForDefaultIntent != null) {
       client.setUrlPrefixesForDefaultIntent(urlPrefixesForDefaultIntent);
     }
@@ -678,7 +678,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
   @ReactProp(name = "onScroll")
   public void setOnScroll(WebView view, boolean hasScrollEvent) {
-    ((RNCWebView) view).setHasScrollEvent(hasScrollEvent);
+    ((RNCWebViewForked) view).setHasScrollEvent(hasScrollEvent);
   }
 
   @Override
@@ -732,7 +732,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
         break;
       case COMMAND_POST_MESSAGE:
         try {
-          RNCWebView reactWebView = (RNCWebView) root;
+          RNCWebViewForked reactWebView = (RNCWebViewForked) root;
           JSONObject eventInitDict = new JSONObject();
           eventInitDict.put("data", args.getString(0));
           reactWebView.evaluateJavascriptWithFallback("(function () {" +
@@ -751,7 +751,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
         }
         break;
       case COMMAND_INJECT_JAVASCRIPT:
-        RNCWebView reactWebView = (RNCWebView) root;
+        RNCWebViewForked reactWebView = (RNCWebViewForked) root;
         reactWebView.evaluateJavascriptWithFallback(args.getString(0));
         break;
       case COMMAND_LOAD_URL:
@@ -769,8 +769,8 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
   @Override
   public void onDropViewInstance(WebView webView) {
     super.onDropViewInstance(webView);
-    ((ThemedReactContext) webView.getContext()).removeLifecycleEventListener((RNCWebView) webView);
-    ((RNCWebView) webView).cleanupCallbacksAndDestroy();
+    ((ThemedReactContext) webView.getContext()).removeLifecycleEventListener((RNCWebViewForked) webView);
+    ((RNCWebViewForked) webView).cleanupCallbacksAndDestroy();
   }
 
   public static RNCWebViewModule getModule(ReactContext reactContext) {
@@ -987,7 +987,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
       WebResourceResponse response = null;
       if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-        response = RNCWebViewManager.this.shouldInterceptRequest(request, false, (RNCWebView) view);
+        response = RNCWebViewManager.this.shouldInterceptRequest(request, false, (RNCWebViewForked) view);
         if (response != null) {
           return response;
         }
@@ -1074,7 +1074,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
       super.onProgressChanged(webView, newProgress);
 
       if(newProgress >= 10){
-        ((RNCWebView) webView).setMessagingEnabled(true);
+        ((RNCWebViewForked) webView).setMessagingEnabled(true);
       }
 
       WritableMap event = Arguments.createMap();
@@ -1139,7 +1139,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
    * Subclass of {@link WebView} that implements {@link LifecycleEventListener} interface in order
    * to call {@link WebView#destroy} on activity destroy event and also to clear the client
    */
-  protected static class RNCWebView extends WebView implements LifecycleEventListener {
+  protected static class RNCWebViewForked extends WebView implements LifecycleEventListener {
     protected @Nullable
     String injectedJS;
     protected boolean messagingEnabled = false;
@@ -1155,7 +1155,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
      * Activity Context is required for creation of dialogs internally by WebView
      * Reactive Native needed for access to ReactNative internal system functionality
      */
-    public RNCWebView(ThemedReactContext reactContext) {
+    public RNCWebViewForked(ThemedReactContext reactContext) {
       super(reactContext);
     }
 
@@ -1213,7 +1213,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
       injectedJS = js;
     }
 
-    protected RNCWebViewBridge createRNCWebViewBridge(RNCWebView webView) {
+    protected RNCWebViewBridge createRNCWebViewBridge(RNCWebViewForked webView) {
       return new RNCWebViewBridge(webView);
     }
 
@@ -1311,9 +1311,9 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     }
 
     protected class RNCWebViewBridge {
-      RNCWebView mContext;
+      RNCWebViewForked mContext;
 
-      RNCWebViewBridge(RNCWebView c) {
+      RNCWebViewBridge(RNCWebViewForked c) {
         mContext = c;
       }
 

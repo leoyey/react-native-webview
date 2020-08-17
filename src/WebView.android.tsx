@@ -33,7 +33,7 @@ import styles from './WebView.styles';
 
 const UIManager = NotTypedUIManager as CustomUIManager;
 
-const RNCWebView = requireNativeComponent(
+const RNCWebViewForked = requireNativeComponent(
   'RNCWebView',
 ) as typeof NativeWebViewAndroid;
 const { resolveAssetSource } = Image;
@@ -263,7 +263,7 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
     }
 
     const NativeWebView
-      = (nativeConfig.component as typeof NativeWebViewAndroid) || RNCWebView;
+      = (nativeConfig.component as typeof NativeWebViewAndroid) || RNCWebViewForked;
 
     const onShouldStartLoadWithRequest = createOnShouldStartLoadWithRequest(
       this.onShouldStartLoadWithRequestCallback,

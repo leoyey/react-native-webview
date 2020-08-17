@@ -48,8 +48,8 @@ const processDecelerationRate = (
 
 const RNCWebViewManager = NativeModules.RNCWebViewManager as ViewManager;
 
-const RNCWebView: typeof NativeWebViewIOS = requireNativeComponent(
-  'RNCWebView',
+const RNCWebViewForked: typeof NativeWebViewIOS = requireNativeComponent(
+  'RNCWebViewForked',
 );
 
 class WebView extends React.Component<IOSWebViewProps, State> {
@@ -73,7 +73,7 @@ class WebView extends React.Component<IOSWebViewProps, State> {
   webViewRef = React.createRef<NativeWebViewIOS>();
 
   // eslint-disable-next-line react/sort-comp
-  getCommands = () => UIManager.getViewManagerConfig('RNCWebView').Commands;
+  getCommands = () => UIManager.getViewManagerConfig('RNCWebViewForked').Commands;
 
   /**
    * Go forward one page in the web view's history.
@@ -309,7 +309,7 @@ class WebView extends React.Component<IOSWebViewProps, State> {
 
     const NativeWebView
       = (nativeConfig.component as typeof NativeWebViewIOS | undefined)
-      || RNCWebView;
+      || RNCWebViewForked;
 
     const webView = (
       <NativeWebView

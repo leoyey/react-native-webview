@@ -9,7 +9,7 @@
 #import <React/RCTDefines.h>
 #import <WebKit/WebKit.h>
 
-@class RNCWebView;
+@class RNCWebViewForked;
 
 @protocol RNCWebViewDelegate <NSObject>
 
@@ -19,7 +19,7 @@
 
 @end
 
-@interface RNCWebView : RCTView
+@interface RNCWebViewForked : RCTView
 
 @property (nonatomic, weak) id<RNCWebViewDelegate> delegate;
 @property (nonatomic, copy) NSDictionary *source;

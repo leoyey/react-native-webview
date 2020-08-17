@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3515965E21A3C86000623BFA /* RNCWKProcessPoolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3515965D21A3C86000623BFA /* RNCWKProcessPoolManager.m */; };
 		E91B351D21446E6C00F9801F /* RNCWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91B351B21446E6C00F9801F /* RNCWebViewManager.m */; };
-		E91B351E21446E6C00F9801F /* RNCWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E91B351C21446E6C00F9801F /* RNCWebView.m */; };
+		E91B351E21446E6C00F9801F /* RNCWebViewForked.m in Sources */ = {isa = PBXBuildFile; fileRef = E91B351C21446E6C00F9801F /* RNCWebViewForked.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,9 +29,9 @@
 		3515965D21A3C86000623BFA /* RNCWKProcessPoolManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCWKProcessPoolManager.m; sourceTree = "<group>"; };
 		3515965F21A3C87E00623BFA /* RNCWKProcessPoolManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNCWKProcessPoolManager.h; sourceTree = "<group>"; };
 		E91B351921446E6C00F9801F /* RNCWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCWebViewManager.h; sourceTree = "<group>"; };
-		E91B351A21446E6C00F9801F /* RNCWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCWebView.h; sourceTree = "<group>"; };
+		E91B351A21446E6C00F9801F /* RNCWebViewForked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCWebViewForked.h; sourceTree = "<group>"; };
 		E91B351B21446E6C00F9801F /* RNCWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCWebViewManager.m; sourceTree = "<group>"; };
-		E91B351C21446E6C00F9801F /* RNCWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCWebView.m; sourceTree = "<group>"; };
+		E91B351C21446E6C00F9801F /* RNCWebViewForked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCWebViewForked.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +56,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				E91B351A21446E6C00F9801F /* RNCWebView.h */,
-				E91B351C21446E6C00F9801F /* RNCWebView.m */,
+				E91B351A21446E6C00F9801F /* RNCWebViewForked.h */,
+				E91B351C21446E6C00F9801F /* RNCWebViewForked.m */,
 				E91B351921446E6C00F9801F /* RNCWebViewManager.h */,
 				E91B351B21446E6C00F9801F /* RNCWebViewManager.m */,
 				3515965D21A3C86000623BFA /* RNCWKProcessPoolManager.m */,
@@ -69,9 +69,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* RNCWebView */ = {
+		58B511DA1A9E6C8500147676 /* RNCWebViewForked */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNCWebView" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNCWebViewForked" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -81,7 +81,7 @@
 			);
 			dependencies = (
 			);
-			name = RNCWebView;
+			name = RNCWebViewForked;
 			productName = RCTDataManager;
 			productReference = 134814201AA4EA6300B7C361 /* libRNCWebView.a */;
 			productType = "com.apple.product-type.library.static";
@@ -100,7 +100,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNCWebView" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNCWebViewForked" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* RNCWebView */,
+				58B511DA1A9E6C8500147676 /* RNCWebViewForked */,
 			);
 		};
 /* End PBXProject section */
@@ -123,7 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E91B351D21446E6C00F9801F /* RNCWebViewManager.m in Sources */,
-				E91B351E21446E6C00F9801F /* RNCWebView.m in Sources */,
+				E91B351E21446E6C00F9801F /* RNCWebViewForked.m in Sources */,
 				3515965E21A3C86000623BFA /* RNCWKProcessPoolManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +223,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RNCWebView;
+				PRODUCT_NAME = RNCWebViewForked;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -239,7 +239,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RNCWebView;
+				PRODUCT_NAME = RNCWebViewForked;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -247,7 +247,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNCWebView" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNCWebViewForked" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -256,7 +256,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNCWebView" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNCWebViewForked" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,
