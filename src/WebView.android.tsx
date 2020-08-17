@@ -34,7 +34,7 @@ import styles from './WebView.styles';
 const UIManager = NotTypedUIManager as CustomUIManager;
 
 const RNCWebViewForked = requireNativeComponent(
-  'RNCWebView',
+  'RNCWebViewForked',
 ) as typeof NativeWebViewAndroid;
 const { resolveAssetSource } = Image;
 
@@ -57,7 +57,7 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
 
   static isFileUploadSupported = async () => {
     // native implementation should return "true" only for Android 5+
-    return NativeModules.RNCWebView.isFileUploadSupported();
+    return NativeModules.RNCWebViewForked.isFileUploadSupported();
   };
 
   state: State = {
@@ -67,7 +67,7 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
 
   webViewRef = React.createRef<NativeWebViewAndroid>();
 
-  getCommands = () => UIManager.getViewManagerConfig('RNCWebView').Commands;
+  getCommands = () => UIManager.getViewManagerConfig('RNCWebViewForked').Commands;
 
   goForward = () => {
     UIManager.dispatchViewManagerCommand(

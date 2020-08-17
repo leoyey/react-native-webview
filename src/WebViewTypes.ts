@@ -32,7 +32,7 @@ export interface CustomUIManager extends UIManagerStatic {
     command: Function,
     params: object | null,
   ) => void;
-  RNCWebView: {
+  RNCWebViewForked: {
     Commands: WebViewCommands;
   };
 }
