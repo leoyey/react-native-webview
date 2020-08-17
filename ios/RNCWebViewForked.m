@@ -8,7 +8,7 @@
 #import "RNCWebViewForked.h"
 #import <React/RCTConvert.h>
 #import <React/RCTAutoInsetsProtocol.h>
-#import "RNCWKProcessPoolManager.h"
+#import "RNCWKForkedProcessPoolManager.h"
 #import <UIKit/UIKit.h>
 
 #import "objc/runtime.h"
@@ -127,7 +127,7 @@ static NSURLCredential* clientAuthenticationCredential;
       wkWebViewConfig.websiteDataStore = [WKWebsiteDataStore defaultDataStore];
     }
     if(self.useSharedProcessPool) {
-      wkWebViewConfig.processPool = [[RNCWKProcessPoolManager sharedManager] sharedProcessPool];
+      wkWebViewConfig.processPool = [[RNCWKForkedProcessPoolManager sharedManager] sharedProcessPool];
     }
     wkWebViewConfig.userContentController = [WKUserContentController new];
 
