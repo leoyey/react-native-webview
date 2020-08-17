@@ -13,7 +13,7 @@
 
 @protocol RNCWebViewDelegate <NSObject>
 
-- (BOOL)webView:(RNCWebView *)webView
+- (BOOL)webView:(RNCWebViewForked *)webView
    shouldStartLoadForRequest:(NSMutableDictionary<NSString *, id> *)request
    withCallback:(RCTDirectEventBlock)callback;
 
