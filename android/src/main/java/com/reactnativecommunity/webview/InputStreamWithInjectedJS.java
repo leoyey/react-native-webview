@@ -1,4 +1,4 @@
-package com.reactnativecommunity.webview;
+package ;
 
 import android.content.Context;
 import android.os.Build;

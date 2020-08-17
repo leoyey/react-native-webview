@@ -1,4 +1,4 @@
-package com.reactnativecommunity.webview;
+package com.reactnativecommunity.webviewforked;
 
 import android.Manifest;
 import android.app.Activity;
@@ -37,7 +37,7 @@ import static android.app.Activity.RESULT_OK;
 
 @ReactModule(name = RNCWebViewModule.MODULE_NAME)
 public class RNCWebViewModule extends ReactContextBaseJavaModule implements ActivityEventListener {
-  public static final String MODULE_NAME = "RNCWebView";
+  public static final String MODULE_NAME = "RNCWebViewForked";
   private static final int PICKER = 1;
   private static final int PICKER_LEGACY = 3;
   private static final int FILE_DOWNLOAD_PERMISSION_REQUEST = 1;
