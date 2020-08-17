@@ -124,8 +124,8 @@ import okhttp3.internal.http.HttpMethod;
  * - canGoBack - boolean, whether there is anything on a history stack to go back
  * - canGoForward - boolean, whether it is possible to request GO_FORWARD command
  */
-@ReactModule(name = RNCWebViewManager.REACT_CLASS)
-public class RNCWebViewManager extends SimpleViewManager<WebView> {
+@ReactModule(name = RNCWebViewForkedManager.REACT_CLASS)
+public class RNCWebViewForkedManager extends SimpleViewManager<WebView> {
   public static final Charset UTF_8 = Charset.forName("UTF-8");
   public static final int COMMAND_GO_BACK = 1;
   public static final int COMMAND_GO_FORWARD = 2;
@@ -158,7 +158,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
 
 
-  public RNCWebViewManager() {
+  public RNCWebViewForkedManager() {
 
     /** LIST OF SITES WHERE WE SHOULDN'T INJECT WEB3 **/
     mBlacklist = new HashMap<>();
@@ -184,7 +184,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     };
   }
 
-  public RNCWebViewManager(WebViewConfig webViewConfig) {
+  public RNCWebViewForkedManager(WebViewConfig webViewConfig) {
     mWebViewConfig = webViewConfig;
   }
 
@@ -275,7 +275,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     if (onlyMainFrame && !request.isForMainFrame()) {
       return null;
     }
-    if (RNCWebViewManager.urlStringLooksInvalid(urlStr)) {
+    if (RNCWebViewForkedManager.urlStringLooksInvalid(urlStr)) {
       return null;
     }
 
@@ -301,7 +301,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
         .build();
 
       Response response = httpClient.newCall(req).execute();
-      if (!RNCWebViewManager.responseRequiresJSInjection(response)) {
+      if (!RNCWebViewForkedManager.responseRequiresJSInjection(response)) {
         return null;
       }
       InputStream is = response.body().byteStream();
@@ -358,7 +358,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
       swController.setServiceWorkerClient(new ServiceWorkerClient() {
         @Override
         public WebResourceResponse shouldInterceptRequest(WebResourceRequest request) {
-          WebResourceResponse response = RNCWebViewManager.this.shouldInterceptRequest(request, false, webView);
+          WebResourceResponse response = RNCWebViewForkedManager.this.shouldInterceptRequest(request, false, webView);
           if (response != null) {
             return response;
           }
@@ -370,7 +370,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
     webView.setDownloadListener(new DownloadListener() {
       public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-        RNCWebViewModule module = getModule(reactContext);
+        RNCWebViewForkedModule module = getModule(reactContext);
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
 
@@ -773,8 +773,8 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     ((RNCWebViewForked) webView).cleanupCallbacksAndDestroy();
   }
 
-  public static RNCWebViewModule getModule(ReactContext reactContext) {
-    return reactContext.getNativeModule(RNCWebViewModule.class);
+  public static RNCWebViewForkedModule getModule(ReactContext reactContext) {
+    return reactContext.getNativeModule(RNCWebViewForkedModule.class);
   }
 
   protected void setupWebChromeClient(ReactContext reactContext, WebView webView) {
@@ -987,7 +987,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
       WebResourceResponse response = null;
       if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-        response = RNCWebViewManager.this.shouldInterceptRequest(request, false, (RNCWebViewForked) view);
+        response = RNCWebViewForkedManager.this.shouldInterceptRequest(request, false, (RNCWebViewForked) view);
         if (response != null) {
           return response;
         }

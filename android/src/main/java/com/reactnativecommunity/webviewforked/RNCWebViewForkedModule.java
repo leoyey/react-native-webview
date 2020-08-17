@@ -35,8 +35,8 @@ import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-@ReactModule(name = RNCWebViewModule.MODULE_NAME)
-public class RNCWebViewModule extends ReactContextBaseJavaModule implements ActivityEventListener {
+@ReactModule(name = RNCWebViewForkedModule.MODULE_NAME)
+public class RNCWebViewForkedModule extends ReactContextBaseJavaModule implements ActivityEventListener {
   public static final String MODULE_NAME = "RNCWebViewForked";
   private static final int PICKER = 1;
   private static final int PICKER_LEGACY = 3;
@@ -66,7 +66,7 @@ public class RNCWebViewModule extends ReactContextBaseJavaModule implements Acti
     }
   };
 
-  public RNCWebViewModule(ReactApplicationContext reactContext) {
+  public RNCWebViewForkedModule(ReactApplicationContext reactContext) {
     super(reactContext);
     reactContext.addActivityEventListener(this);
   }
@@ -171,7 +171,7 @@ public class RNCWebViewModule extends ReactContextBaseJavaModule implements Acti
     if (chooserIntent.resolveActivity(getCurrentActivity().getPackageManager()) != null) {
       getCurrentActivity().startActivityForResult(chooserIntent, PICKER_LEGACY);
     } else {
-      Log.w("RNCWebViewModule", "there is no Activity to handle this Intent");
+      Log.w("RNCWebViewForkedModule", "there is no Activity to handle this Intent");
     }
   }
 
@@ -196,7 +196,7 @@ public class RNCWebViewModule extends ReactContextBaseJavaModule implements Acti
     if (chooserIntent.resolveActivity(getCurrentActivity().getPackageManager()) != null) {
       getCurrentActivity().startActivityForResult(chooserIntent, PICKER);
     } else {
-      Log.w("RNCWebViewModule", "there is no Activity to handle this Intent");
+      Log.w("RNCWebViewForkedModule", "there is no Activity to handle this Intent");
     }
 
     return true;
