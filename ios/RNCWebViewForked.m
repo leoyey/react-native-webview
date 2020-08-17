@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import "RNCWebView.h"
+#import "RNCWebViewForked.h"
 #import <React/RCTConvert.h>
 #import <React/RCTAutoInsetsProtocol.h>
 #import "RNCWKProcessPoolManager.h"
@@ -39,7 +39,7 @@ static NSURLCredential* clientAuthenticationCredential;
 @property (nonatomic, copy) WKWebView *webView;
 @end
 
-@implementation RNCWebView
+@implementation RNCWebViewForked
 {
   UIColor * _savedBackgroundColor;
   BOOL _savedHideKeyboardAccessoryView;

@@ -9,7 +9,7 @@
 
 #import <React/RCTUIManager.h>
 #import <React/RCTDefines.h>
-#import "RNCWebView.h"
+#import "RNCWebViewForked.h"
 
 @interface RNCWebViewManager () <RNCWebViewDelegate>
 @end
