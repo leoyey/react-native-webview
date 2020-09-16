@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3515965E21A3C86000623BFA /* RNCWKForkedProcessPoolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3515965D21A3C86000623BFA /* RNCWKForkedProcessPoolManager.m */; };
-		E91B351D21446E6C00F9801F /* RNCWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91B351B21446E6C00F9801F /* RNCWebViewManager.m */; };
 		E91B351E21446E6C00F9801F /* RNCWebViewForked.m in Sources */ = {isa = PBXBuildFile; fileRef = E91B351C21446E6C00F9801F /* RNCWebViewForked.m */; };
+		FF886C152511ADA800A04709 /* RNCWebViewForkedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF886C132511ADA800A04709 /* RNCWebViewForkedManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,13 +25,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRNCWebView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNCWebView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134814201AA4EA6300B7C361 /* libRNCWebView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRNCWebView.a; path = libRNCWebViewForked.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3515965D21A3C86000623BFA /* RNCWKForkedProcessPoolManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCWKForkedProcessPoolManager.m; sourceTree = "<group>"; };
 		3515965F21A3C87E00623BFA /* RNCWKForkedProcessPoolManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNCWKForkedProcessPoolManager.h; sourceTree = "<group>"; };
-		E91B351921446E6C00F9801F /* RNCWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCWebViewManager.h; sourceTree = "<group>"; };
 		E91B351A21446E6C00F9801F /* RNCWebViewForked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCWebViewForked.h; sourceTree = "<group>"; };
-		E91B351B21446E6C00F9801F /* RNCWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCWebViewManager.m; sourceTree = "<group>"; };
 		E91B351C21446E6C00F9801F /* RNCWebViewForked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCWebViewForked.m; sourceTree = "<group>"; };
+		FF886C132511ADA800A04709 /* RNCWebViewForkedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCWebViewForkedManager.m; sourceTree = "<group>"; };
+		FF886C142511ADA800A04709 /* RNCWebViewForkedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCWebViewForkedManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +58,8 @@
 			children = (
 				E91B351A21446E6C00F9801F /* RNCWebViewForked.h */,
 				E91B351C21446E6C00F9801F /* RNCWebViewForked.m */,
-				E91B351921446E6C00F9801F /* RNCWebViewManager.h */,
-				E91B351B21446E6C00F9801F /* RNCWebViewManager.m */,
+				FF886C142511ADA800A04709 /* RNCWebViewForkedManager.h */,
+				FF886C132511ADA800A04709 /* RNCWebViewForkedManager.m */,
 				3515965D21A3C86000623BFA /* RNCWKForkedProcessPoolManager.m */,
 				3515965F21A3C87E00623BFA /* RNCWKForkedProcessPoolManager.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -122,8 +122,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E91B351D21446E6C00F9801F /* RNCWebViewManager.m in Sources */,
 				E91B351E21446E6C00F9801F /* RNCWebViewForked.m in Sources */,
+				FF886C152511ADA800A04709 /* RNCWebViewForkedManager.m in Sources */,
 				3515965E21A3C86000623BFA /* RNCWKForkedProcessPoolManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

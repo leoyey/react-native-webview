@@ -46,7 +46,7 @@ const processDecelerationRate = (
   return newDecelerationRate;
 };
 
-const RNCWebViewManager = NativeModules.RNCWebViewManager as ViewManager;
+const RNCWebViewManager = NativeModules.RNCWebViewForkedManager as ViewManager;
 
 const RNCWebViewForked: typeof NativeWebViewIOS = requireNativeComponent(
   'RNCWebViewForked',
